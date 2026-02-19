@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView 
+from rest_framework import mixins,generics
+from rest_framework import viewsets
 # Create your views here.
 
 
@@ -55,8 +57,8 @@ def teacher_detail(request,pk):
 
 # def students_api_view(request):
 #     pass
-
-#class based view
+'''
+class based view
 class StudentViews(APIView):
     def get(self,request):
         students=Student.objects.all()
@@ -101,3 +103,56 @@ class StudentDetails(APIView):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+'''
+
+
+#mixins
+'''
+class StudentViews(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
+    queryset=Student.objects.all()
+    #queryset is a keyword should be queryset only
+    serializer_class=StudentSerializer
+    #serializer_class is a keyword
+    def get(self,request):
+        return self.list(request)
+    def post(self,request):
+        return self.create(request)
+    
+
+class StudentDetails(mixins.RetrieveModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
+    queryset=Student.objects.all()
+    #queryset is a keyword should be queryset only
+    serializer_class=StudentSerializer
+    #serializer_class is a keyword
+    def get(self,request,pk):
+        return self.retrieve(request)
+    def put(self,request,pk):
+        return self.update(request,pk)
+    def delete(self,request,pk):
+        return self.destroy(request,pk)
+        '''
+'''
+class StudentViews(generics.ListCreateAPIView):
+    queryset=Student.objects.all()
+    #queryset is a keyword should be queryset only
+    serializer_class=StudentSerializer
+    #serializer_class is a keyword
+'''
+
+
+# class StudentDetails(generics.RetrieveAPIView,generics.UpdateAPIView,generics.DestroyAPIView):
+class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Student.objects.all()
+    #queryset is a keyword should be queryset only
+    serializer_class=StudentSerializer
+    #serializer_class is a keyword
+    # lookup_field='pk'
+
+
+
+#class base view using view set 
+class StudentViews(viewsets.ModelViewSet):
+    queryset=Student.objects.all()
+    serializer_class=StudentSerializer
+
+   
