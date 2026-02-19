@@ -139,7 +139,7 @@ class StudentViews(generics.ListCreateAPIView):
     #serializer_class is a keyword
 '''
 
-
+'''
 # class StudentDetails(generics.RetrieveAPIView,generics.UpdateAPIView,generics.DestroyAPIView):
 class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()
@@ -147,7 +147,7 @@ class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class=StudentSerializer
     #serializer_class is a keyword
     # lookup_field='pk'
-
+'''
 
 
 #class base view using view set 
