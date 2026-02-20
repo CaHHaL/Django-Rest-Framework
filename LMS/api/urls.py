@@ -11,4 +11,6 @@ urlpatterns = [
     # path('students', views.StudentViews.as_view()),
     path('',include(router.urls)),
     # path('student/<int:pk>/',views.StudentDetails.as_view())
+    path('mentors/',views.mentor_api.as_view())
+    
 ]

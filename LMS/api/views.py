@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from teacher.models import Teacher
 from student.models import Student
-from .serializers import TeacherSerializer,StudentSerializer
+from .serializers import TeacherSerializer,StudentSerializer,MentorSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView 
 from rest_framework import mixins,generics
 from rest_framework import viewsets
+from mentor.models import Mentor
 # Create your views here.
 
 
@@ -154,5 +155,10 @@ class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
 class StudentViews(viewsets.ModelViewSet):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
+
+
+class mentor_api(generics.ListCreateAPIView):
+    queryset=Mentor.objects.all()
+    serializer_class=MentorSerializer
 
    
