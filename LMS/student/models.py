@@ -8,4 +8,4 @@ class Student(models.Model):
     email=models.EmailField(unique=True)
     mentor=models.ForeignKey(Mentor,on_delete=models.SET_NULL,null=True,related_name='students')
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} '

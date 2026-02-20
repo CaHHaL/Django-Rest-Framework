@@ -161,4 +161,9 @@ class mentor_api(generics.ListCreateAPIView):
     queryset=Mentor.objects.all()
     serializer_class=MentorSerializer
 
+class mentor_api_details(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Mentor.objects.all()
+    serializer_class=MentorSerializer
+
+
    

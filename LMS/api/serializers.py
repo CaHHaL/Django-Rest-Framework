@@ -15,7 +15,7 @@ class StudentSerializer(serializers.ModelSerializer):
         fields="__all__"        
 
 class MentorSerializer(serializers.ModelSerializer):
-    students=StudentSerializer(many=True)
+    students=StudentSerializer(many=True,read_only=True)
     class Meta:
         model=Mentor
         fields=['id','name','students']
