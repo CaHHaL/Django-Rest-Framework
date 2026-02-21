@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework import mixins,generics
 from rest_framework import viewsets
 from mentor.models import Mentor
+from student.paginations import StudentPagination
 # Create your views here.
 
 
@@ -155,6 +156,8 @@ class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
 class StudentViews(viewsets.ModelViewSet):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
+    pagination_class=StudentPagination
+    filterset_fields=['branch']
 
 
 class mentor_api(generics.ListCreateAPIView):
