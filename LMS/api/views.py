@@ -11,6 +11,7 @@ from rest_framework import mixins,generics
 from rest_framework import viewsets
 from mentor.models import Mentor
 from student.paginations import StudentPagination
+from student.filters import StudentFilter
 # Create your views here.
 
 
@@ -157,8 +158,8 @@ class StudentViews(viewsets.ModelViewSet):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
     pagination_class=StudentPagination
-    filterset_fields=['branch']
-
+    # filterset_fields=['branch'] #for default or global filter
+    filterset_class=StudentFilter
 
 class mentor_api(generics.ListCreateAPIView):
     queryset=Mentor.objects.all()
